@@ -7,7 +7,8 @@ const routes = require('./routes');
 // const {  } = require("./services");
 
 const app = express();
-const { PORT } = process.env;
+// const { PORT } = process.env;
+const port = process.env.PORT || 8080;
 
 app.use(express.json());
 app.use(
@@ -16,12 +17,12 @@ app.use(
   }),
 );
 
-app.listen(PORT, async () => {
+app.listen(port, async () => {
   try {
     await initializeDB();
     // await userService.createFirstAdmin();
     await sequelize.sync();
-    console.log(`Listening on port ${PORT}..`);
+    console.log(`Listening on port ${port}..`);
   } catch (err) {
     console.error('Error initializing DB.', err);
   }
