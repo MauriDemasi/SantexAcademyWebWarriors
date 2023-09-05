@@ -1,8 +1,8 @@
 require('dotenv').config();
 
+const JwtStrategy = require("passport-jwt").Strategy;
 const {Usuario} = require("../models");
-const JwtStrategy = require("passport-jwt").Strategy,
-ExtractJwt = require("passport-jwt").ExtractJwt;
+const ExtractJwt = require("passport-jwt").ExtractJwt;
 
 module.exports = (passport) => {
   const opts = {
@@ -21,6 +21,7 @@ module.exports = (passport) => {
         return done(null, decoded);
       } catch (error) {
         done(error.message);
+        return;
       }
     })
   );
